@@ -4,3 +4,8 @@ node_modules
 *.log
 sbom.json
 cosign.key
+
+# macOS junk
+.DS_Store
+# cosign private key (never commit)
+cosign.key

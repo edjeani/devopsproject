@@ -1,7 +1,12 @@
-name: sanity
-on: [push, pull_request]
+name: ci-minimal
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "sanity OK"
+      - uses: actions/checkout@v4
+      - run: echo "minimal CI OK"

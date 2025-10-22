@@ -10,3 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo "minimal CI OK"
+
+  secrets_scan:
+    name: Gitleaks (Secrets)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gitleaks/gitleaks-action@v2
+        with:
+          args: detect --source . --redact

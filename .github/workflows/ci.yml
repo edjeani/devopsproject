@@ -19,3 +19,11 @@ jobs:
       - uses: gitleaks/gitleaks-action@v2
         with:
           args: detect --source . --redact
+dockerfile_lint:
+    name: Hadolint (Dockerfile)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile          

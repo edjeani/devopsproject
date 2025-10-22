@@ -133,13 +133,14 @@ jobs:
     needs: build_scan_push_sign
     continue-on-error: true
     steps:
+      - uses: actions/checkout@v4
       - name: Start container
         run: |
           docker run -d -p 3000:3000 ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }}
           sleep 5
-      - name: Run ZAP Baseline
+      - name: Run ZAP Baseline and save report
         run: |
-          docker run --network=host -t ghcr.io/zaproxy/zaproxy:stable \
+          docker run --network=host -v $PWD:/zap/wrk -t ghcr.io/zaproxy/zaproxy:stable \
           zap-baseline.py -t http://127.0.0.1:3000 -r zap_report.html || true
       - name: Upload ZAP report
         uses: actions/upload-artifact@v4

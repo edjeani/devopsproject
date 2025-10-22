@@ -54,7 +54,7 @@ jobs:
       
       - uses: returntocorp/semgrep-action@v1
         with:
-          entryPoint: semgrep ci
+          entryPoint: semgrep 
           args: >-
             --config p/ci
             --config p/nodejs
